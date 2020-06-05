@@ -1,15 +1,35 @@
 import React from "react";
-import { View, StyleSheet, Button, Image } from "react-native";
+import { View, StyleSheet, Button, Image, Text } from "react-native";
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
+import Colors from "../constants/colors";
 
 const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
       <TitleText>The Game is over!</TitleText>
-      <Image source={require("../assets/success.png")} />
-      <BodyText>Number of rounds: {props.rounds}</BodyText>
-      <BodyText>Number was: {props.userNumber}</BodyText>
+      <View style={styles.imageContainer}>
+        <Image
+          source={require("../assets/success.png")}
+          // source={{
+          //   uri:
+          //     "https://cdn.pixabay.com/photo/2016/05/05/23/52/mountain-summit-1375015_960_720.jpg",
+          // }}
+          style={styles.image}
+          resizeMode="cover"
+          fadeDuration={1000}
+        />
+      </View>
+      <View style={styles.resultContainer}>
+        <BodyText style={styles.resultText}>
+          Your phone needed{" "}
+          <Text Text style={styles.highlight}>
+            {props.rounds}
+          </Text>{" "}
+          rounds to guess the number{" "}
+          <Text style={styles.highlight}>{props.userNumber}</Text>.
+        </BodyText>
+      </View>
       <Button title="NEW GAME" onPress={props.onRestart} />
     </View>
   );
@@ -20,6 +40,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  imageContainer: {
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    borderWidth: 3,
+    borderColor: "black",
+    overflow: "hidden", // any child inside of the container that go beyond the boundaries will be clipped (or cut off)
+    marginVertical: 30,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  highlight: {
+    color: Colors.primary,
+    fontFamily: "open-sans-bold",
+  },
+  resultContainer: {
+    marginHorizontal: 30,
+    marginVertical: 15,
+  },
+  resultText: {
+    textAlign: "center",
+    fontSize: 20,
   },
 });
 
