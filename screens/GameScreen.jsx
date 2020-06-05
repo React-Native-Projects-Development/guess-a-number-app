@@ -84,7 +84,7 @@ const GameScreen = (props) => {
       <View style={styles.listContainer}>
         <ScrollView contentContainerStyle={styles.list}>
           {pastGuesses.map((guess, index) => {
-            console.log("Guess", guess, "Index", index);
+            // console.log("Guess", guess, "Index", index);
 
             return renderListItem(guess, pastGuesses.length - index);
           })}
